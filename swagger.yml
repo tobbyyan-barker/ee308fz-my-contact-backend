@@ -1,0 +1,126 @@
+openapi: 3.0.0 #这是在说: 我这份合同遵循OPENAPI 3.0.0 标准
+
+#这是我们API的信息 他会显示在自动生成的文档页面上 title: API标题 description: API描述  (类比python 字典的键+值)
+info:
+  title: "通讯录API" 
+  description: "一个关于联系人的API" 
+  version: "1.0.0"
+
+#这是你API的 "根路径" servers: 设计决策 你决定了你所有api的根路径都是/api
+servers:
+  - url: "/api"
+
+
+#多个api的复用模板
+components:
+  #schemas用来定义数据长什么样
+  schemas:
+    #模板重命名: 因为后面这三个功能都需要和"人" 这个对象打交道 所以这里提前定义一个复用模板" person" 类 
+    Person:
+      type: "object" # 输入的模板必须是一个"对象"
+      required:      # 规则: 这个对象必须包含以下字段
+        - name
+        - phone  
+      properties:    # 字段列表: 这个对象可以包含以下字段
+        name:
+          type: "string"  #类型: 字符串
+        phone:
+          type: "string"
+  #用来定义"URL"里传的参数长什么样呢?
+  parameters:
+    person_id:
+      name: "person_id"
+      description: "The sole ID of contact that we want to operate"
+      in: path  #数据在url路径里
+      required: True
+      schema:
+        type: "integer"
+
+#"合同的正文 定义所有的API路径" #告诉我们这个api能够做什么
+paths:
+  #定义第一个路径people
+  /people:
+    #get 表示接受什么请求方法
+    get:
+      #这行的意思是: 当一个GET/api/people 请求进来时，去一个叫'people.py'的文件夹例 找到并执行一个"read_all"函数
+      operationId: "people.read_all"
+      tags:
+        - People #在文档UI里 给这个API打个people标签
+      summary: "读取所有联系人的列表"
+
+      #定义这个API会如何响应
+      responses: 
+        "200": #200状态码 意思是成功读取到数据
+          description: "成功读取联系人列表"
+    #这个是新功能 
+    # 你只需要把这整段 post: 代码当作一个模板，然后只修改那几个**“你的逻辑”**相关的行：
+    # operationId (链接到哪个函数)
+    # summary (显示什么名字)
+    # $ref (使用哪个模板)
+    # responses (规定哪个成功码)
+    post: #这个手打
+      operationId: "people.create"
+      tags:
+        - People
+      summary: "Create a person"
+
+      #2.核心: 声明---这个API需要一个请求体(requestBody)，定义"输入数据", 模板格式 照抄就行
+      requestBody:
+        description: "Person to create"
+        required: True #这个请求体是必须的 
+        content:
+          application/json : #请求体的数据格式"必须是json"
+            schema: #下面来定义格式
+              #3.最妙的一步: 告诉connextion 这个json数据格式 引用(ref) 我们上面定义的哪个"person"模板 #这个手打
+              $ref: "#/components/schemas/Person"
+      #4.响应: #这个手打
+      #创建成功时: 服务器应返回"201"状态码。
+      #(200 = ok, 201 = Created, 这是REST API的规范)
+      responses:
+        "201":
+          description: "successfully created person"
+
+  #新的api路径:
+  /people/{person_id}:
+    get:
+      operationId: "people.read_one"
+      tags:
+        - People
+      summary: "Read one person according to their ID"
+      parameters:
+        - $ref: "#/components/parameters/person_id"
+      responses:
+        "200":
+          description: "successfully read a person" 
+          content:
+            application/json: #因为这个人的名字包含在网址的最后面 要类似于网址方式提取
+              schema:
+                $ref: "#/components/schemas/Person"  # 返回一个人的真实数据
+    put:
+      operationId: "people.update"
+      tags:
+        - People
+      summary: " modify a person according to their ID"
+      parameters:
+        - $ref: "#/components/parameters/person_id"
+      requestBody: #告诉函数新的数据是什么:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Person"
+      responses:
+        "200":
+          description: "modify people successfully"
+
+    delete:
+      operationId: "people.delete"
+      tags:
+        - People
+      summary: "delete a person according to their ID"
+      parameters:
+        - $ref: "#/components/parameters/person_id"
+      responses:
+        "204":
+          description: "delete a person successfully"     
+

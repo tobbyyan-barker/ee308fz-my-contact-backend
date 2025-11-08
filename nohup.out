@@ -1,0 +1,85 @@
+INFO:     Started server process [24560]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started server process [24915]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [25168]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started server process [25383]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+HTTPException(status_code=404, detail='The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.')
+HTTPException(status_code=404, detail='The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.')
+INFO:     27.148.120.243:34006 - "GET /api/ui/ HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33877 - "GET /api/ui/swagger-ui.css HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:34007 - "GET /api/ui/swagger-ui-bundle.js HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:33878 - "GET /api/ui/swagger-ui-standalone-preset.js HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:33879 - "GET /api/ui/favicon-32x32.png HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:34009 - "GET /api/openapi.json HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34016 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33887 - "POST /api/people HTTP/1.1" 201 Created
+INFO:     Started server process [27399]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     27.148.120.243:33899 - "GET /api/ui HTTP/1.1" 307 Temporary Redirect
+INFO:     27.148.120.243:33900 - "GET /api/ui/ HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33924 - "GET /api/openapi.json HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33902 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33865 - "GET /api/ui/ HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34034 - "GET /api/ui/swagger-ui-bundle.js HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:33869 - "GET /api/ui/swagger-ui-standalone-preset.js HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:33868 - "GET /api/ui/swagger-ui.css HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:33871 - "GET /api/openapi.json HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34036 - "GET /api/ui/favicon-32x32.png HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:34040 - "POST /api/people HTTP/1.1" 201 Created
+INFO:     27.148.120.243:33838 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34011 - "OPTIONS /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33841 - "POST /api/people HTTP/1.1" 201 Created
+INFO:     27.148.120.243:34012 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33868 - "OPTIONS /api/people/12 HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34006 - "DELETE /api/people/12 HTTP/1.1" 204 No Content
+INFO:     27.148.120.243:34007 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33869 - "OPTIONS /api/people/10 HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34008 - "DELETE /api/people/10 HTTP/1.1" 204 No Content
+INFO:     27.148.120.243:33870 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34009 - "OPTIONS /api/people/11 HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34010 - "DELETE /api/people/11 HTTP/1.1" 204 No Content
+INFO:     27.148.120.243:33871 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34011 - "OPTIONS /api/people/13 HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33872 - "DELETE /api/people/13 HTTP/1.1" 204 No Content
+INFO:     27.148.120.243:33873 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33879 - "POST /api/people HTTP/1.1" 201 Created
+INFO:     27.148.120.243:34021 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34025 - "DELETE /api/people/10 HTTP/1.1" 204 No Content
+INFO:     27.148.120.243:34026 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33887 - "GET /api/people/9 HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33888 - "OPTIONS /api/people/9 HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33889 - "PUT /api/people/9 HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34028 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33965 - "GET /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33969 - "OPTIONS /api/people HTTP/1.1" 200 OK
+INFO:     27.148.120.243:33969 - "POST /api/people HTTP/1.1" 201 Created
+INFO:     27.148.120.243:33969 - "GET /api/people HTTP/1.1" 200 OK
+ERROR:    Error loading ASGI app. Attribute "app" not found in module "app".
+INFO:     Started server process [30566]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     27.148.120.243:34015 - "GET /api/ui HTTP/1.1" 307 Temporary Redirect
+INFO:     27.148.120.243:33818 - "GET /api/ui/ HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34017 - "GET /api/ui/swagger-ui-standalone-preset.js HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:34016 - "GET /api/ui/swagger-ui.css HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:33819 - "GET /api/ui/swagger-ui-bundle.js HTTP/1.1" 304 Not Modified
+INFO:     27.148.120.243:34018 - "GET /api/openapi.json HTTP/1.1" 200 OK
+INFO:     27.148.120.243:34022 - "GET /api/people HTTP/1.1" 200 OK
+HTTPException(status_code=404, detail='The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.')
+HTTPException(status_code=404, detail='The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.')
