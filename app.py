@@ -6,7 +6,7 @@ import connexion
 from connexion import FlaskApp
 from flask_sqlalchemy import SQLAlchemy #导入翻译官
 from flask_marshmallow import Marshmallow #导入自动翻译机
-
+from starlette.middleware.cors import CORSMiddleware
 import os #处理文件路径
 
 basedir = os.path.abspath(os.path.dirname(__file__)) # os.path.dirname(__file__)指的是app.py所在的那个文件夹
@@ -16,13 +16,13 @@ connexion_app = FlaskApp(__name__,specification_dir=basedir)
 
 flask_app = connexion_app.app
 
-@flask_app.after_request
-def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Headers'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-    response.headers['Access-Control-Max-Age'] = '86400'
-    return response
+# @flask_app.after_request
+# def add_cors_headers(response):
+#     response.headers['Access-Control-Allow-Origin'] = '*'
+#     response.headers['Access-Control-Allow-Headers'] = '*'
+#     response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+#     response.headers['Access-Control-Max-Age'] = '86400'
+#     return response
 
 #数据库配置: 告诉翻译官 你的文件叫 "contacts.db"
 db_path = os.path.join(basedir,"contacts.db") #在根目录下然后创建一个名字叫contacts.db的文件嗷
@@ -48,6 +48,13 @@ connexion_app.add_api("swagger.yml")
 with flask_app.app_context():
     db.create_all()
 
+app = CORSMiddleware(
+    app=connexion_app,  # <--- 把整个 connexion_app 包起来
+    allow_origins=["*"], # 允许所有来源 (包括你的 Pages 和 助教的电脑)
+    allow_credentials=True,
+    allow_methods=["*"], # 允许所有方法 (GET, POST, OPTIONS, PUT, DELETE)
+    allow_headers=["*"], # 允许所有请求头
+)
 
 # #确保服务器可以被访问，并开启调试模式
 # if __name__ == "__main__": #只有app.py直接被运行时才执行这些代码:
